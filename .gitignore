@@ -35,3 +35,6 @@ node_modules
 # Server configuration
 server/config.js
 
+# Client bower components
+client/bower_components
+
