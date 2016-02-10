@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<title>Future of Web Admin page</title>
+		<link href="common.css" rel="stylesheet" type="text/css">
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+		<link rel="import" href="admin-import.html">
+	</head>
+	<body>
+	<template is="dom-bind" id="app">
+		<style is="custom-style">
+			paper-card {
+				margin: 16px;
+				width: calc(100% - 32px);
+			}
+			.bottom {
+				position: absolute;
+				bottom: 0;
+				width: calc(100% - 32px);
+				margin: 16px;
+				@apply(--layout-horizontal);
+				@apply(--layout-justified);
+				@apply(--layout-center);
+			}
+			.counter {
+				@apply(--paper-font-display4);
+			}
+			paper-fab {
+				--paper-fab-background: var(--paper-blue-400);
+				--paper-fab-keyboard-focus-background: var(--paper-blue-900);
+			}
+			.hidden {
+				display: none;
+			}
+		</style>
+		<web-socket id="ws" on-message="websocketOnMessage"></web-socket>
+		<paper-card id="connect" heading="Connecting">
+			<div class="card-content">
+				<form is="iron-form" id="urlForm">
+					<paper-input name="url" label="url" type="text"></paper-input>
+				</form>
+			</div>
+			<div class="card-actions">
+				<paper-button id="connectButton">Connect</paper-button>
+			</div>
+		</paper-card>
+		<paper-card id="login" heading="Admin" class="hidden">
+			<div class="card-content">
+				<form is="iron-form" id="loginForm">
+					<paper-input name="username" label="username" type="text"></paper-input>
+					<paper-input name="password" label="password" type="password"></paper-input>
+				</form>
+			</div>
+			<div class="card-actions">
+				<paper-button id="loginButton" on-tap="login">Login</paper-button>
+			</div>
+		</paper-card>
+		<template is="dom-if" if="[[loggedIn]]">
+			<div class="bottom">
+				<paper-fab id="prev" icon="icons:chevron-left" on-tap="prev"></paper-fab>
+				<span class="counter">[[counter]]</span>
+				<paper-fab id="next" icon="icons:chevron-right" on-tap="next"></paper-fab>
+			</div>
+		</template>
+	</template>
+	<script src="admin.js"></script>
+	</body>
+</html>
+
+

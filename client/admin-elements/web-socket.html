@@ -1,0 +1,68 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<script>
+(function() {
+	'use strict';
+
+	Polymer({
+		is: 'web-socket',
+
+		properties: {
+			url: {
+				type: String,
+				observer: 'changedUrl'
+			},
+
+			notJson: {
+				type: Boolean,
+				value: false
+			},
+
+			auto: {
+				type: Boolean,
+				value: false
+			},
+
+			ws: {
+				type: Object,
+				value: null
+			}
+		},
+
+		onMessage: function(e) {
+			var data = e.data;
+			if (!this.notJson) {
+				data = JSON.parse(data);
+			}
+			this.fire('message', {
+				data: data
+			});
+		},
+		send: function(data) {
+			if (this.ws === null) return;
+			if (!this.notJson) {
+				data = JSON.stringify(data);
+			}
+			this.ws.send(data);
+		},
+		open: function() {
+			if (!this.url) return;
+			if (this.ws !== null) {
+				this.close();
+			}
+			this.ws = new WebSocket(this.url);
+			this.ws.addEventListener('message', this.onMessage.bind(this));
+		},
+		close: function() {
+			if (this.ws === null) return;
+			this.ws.removeEventListener('message', this.onMessage);
+			this.ws.close();
+			this.ws = null;
+		},
+		changedUrl: function() {
+			if (!this.auto) return;
+			this.open();
+		}
+	});
+})();
+</script>
