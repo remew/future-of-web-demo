@@ -17,8 +17,8 @@ window.addEventListener('WebComponentsReady', function() {
 		app.$.ws.open();
 		app.$.ws.ws.addEventListener('open', function() {
 			app.connected = true;
-			app.$.connect.classList.add('hidden');
-			app.$.login.classList.remove('hidden');
+			app.$.connect.toggleClass('hidden', true);
+			app.$.login.toggleClass('hidden', false);
 		});
 	};
 
