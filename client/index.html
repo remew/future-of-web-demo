@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<title>Future of Web</title>
+		<link href="common.css" rel="stylesheet" type="text/css">
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+		<link rel="import" href="common-import.html">
+		<link rel="import" href="slide-import.html">
+	</head>
+	<body>
+		<template is="dom-bind" id="app">
+			<web-socket id="ws" on-message="websocketOnMessage"></web-socket>
+			<slide-holder counter="[[counter]]">
+				<slide-sheet>
+					<div class="content">
+						<h1>hoge1</h1>
+					</div>
+				</slide-sheet>
+				<slide-sheet>
+					<div class="content">
+						<h1>hoge2</h1>
+					</div>
+				</slide-sheet>
+				<slide-sheet>
+					<div class="content">
+						<h1>hoge3</h1>
+					</div>
+				</slide-sheet>
+			</slide-holder>
+		</template>
+		<!-- <script src="remew.min.js"></script> -->
+		<script src="app.js"></script>
+	</body>
+</html>
+

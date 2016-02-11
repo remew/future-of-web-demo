@@ -1,0 +1,49 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="slide-holder">
+	<template>
+		<style>
+			:host {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				overflow: hidden;
+			}
+		</style>
+		<content select="slide-sheet"></content>
+	</template>
+	<script>
+	(function() {
+		'use strict';
+
+		Polymer({
+			is: 'slide-holder',
+
+			properties: {
+				counter: {
+					type: Number,
+					value: 1,
+					observer: 'changedCounter'
+				},
+				sheets: {
+					type: Array
+				}
+			},
+			
+			created: function() {
+				this.sheets = this.getEffectiveChildren();
+			},
+
+			changedCounter: function(count) {
+				this.sheets.forEach(function(sheet, i) {
+					Polymer.Base.toggleClass('after', count < i + 1, sheet);
+					Polymer.Base.toggleClass('current', count === i + 1, sheet);
+					Polymer.Base.toggleClass('before', count > i + 1, sheet);
+				});
+			}
+		});
+	})();
+	</script>
+</dom-module>

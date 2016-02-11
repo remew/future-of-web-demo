@@ -1,0 +1,54 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="slide-sheet">
+	<template>
+		<style>
+			:host {
+				box-sizing: border-box;
+				position: absolute;
+				top: 0;
+				width: calc(100% - 32px);
+				height: calc(100% - 32px);
+				margin: 16px;
+				transition: 0.5s;
+			}
+			:host.before {
+				left: -100%;
+			}
+			:host.current {
+				left: 0;
+			}
+			:host.after {
+				left: 100%;
+			}
+			paper-material {
+				width: 100%;
+				height: 100%;
+				background: #fff;
+			}
+			.content {
+				padding: 32px;
+			}
+		</style>
+		<paper-material elevation="1">
+			<content select=":not(.content)"></content>
+			<div class="content">
+				<content select=".content"></content>
+			</div>
+		</paper-material>
+	</template>
+	<script>
+	(function() {
+		'use strict';
+
+		Polymer({
+			is: 'slide-sheet',
+
+			properties: {
+				hoge: 'hoge'
+			}
+
+		});
+	})();
+	</script>
+</dom-module>
