@@ -1,0 +1,48 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="slide-no8">
+	<template>
+		<style>
+			:host {
+				display: block;
+			}
+			h1 {
+				@apply(--paper-font-title);
+				font-size: 64px !important;
+				line-height: 64px !important;
+			}
+			p, li {
+				@apply(--paper-font-display1);
+			}
+			.image-holder {
+				text-align: center;
+			}
+			img {
+				width: 360px;
+				height: auto;
+				-ms-interpolation-mode: nearest-neighbor;   /* IE8+ */
+				image-rendering: -webkit-optimize-contrast; /* Safari (WebKit) */
+				image-rendering: -moz-crisp-edges;          /* Firefox (Gecko) */
+				image-rendering: -o-crisp-edges;            /* Opera 12.x */
+				image-rendering: pixelated;                 /* Chrome 41+, Opera 29+ (CSS4) */
+			}
+		</style>
+		<h1>体験型Javascriptツアー</h1>
+		<p><a href="https://future.remew.net">https://future.remew.net</a>にアクセス！！</p>
+		<div class="image-holder">
+			<img src="/qr-url.png">
+		</div>
+	</template>
+	<script>
+	(function() {
+		'use strict';
+
+		Polymer({
+			is: 'slide-no8',
+
+			properties: {
+			}
+		});
+	})();
+	</script>
+</dom-module>

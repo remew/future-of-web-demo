@@ -1,0 +1,41 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="first-slide">
+	<template>
+		<style>
+			:host {
+				display: block;
+			}
+			h1, p {
+			}
+			h1 {
+				font-size: 36px;
+			}
+			a {
+				text-decoration: none;
+			}
+			p {
+				font-size: 28px;
+			}
+			@media only screen and (min-width: 480px) {
+				h1 {
+					font-size: 80px;
+				}
+			}
+		</style>
+		<h1>Future of Web</h1>
+		<p><a href="https://twitter.com/_remew_">@_remew_</a></p>
+	</template>
+	<script>
+	(function() {
+		'use strict';
+
+		Polymer({
+			is: 'first-slide',
+
+			properties: {
+			}
+		});
+	})();
+	</script>
+</dom-module>

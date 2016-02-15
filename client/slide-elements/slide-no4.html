@@ -1,0 +1,37 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="slide-no4">
+	<template>
+		<style>
+			:host {
+				display: block;
+			}
+			h1 {
+				@apply(--paper-font-title);
+				font-size: 64px !important;
+				line-height: 64px !important;
+			}
+			p, li {
+				@apply(--paper-font-display1);
+			}
+		</style>
+		<h1>Why?</h1>
+		<ul>
+			<li>WEBの表現力の増加</li>
+			<li>クロスプラットフォーム</li>
+			<li>Javascriptでできることが増えた</li>
+		</ul>
+	</template>
+	<script>
+	(function() {
+		'use strict';
+
+		Polymer({
+			is: 'slide-no4',
+
+			properties: {
+			}
+		});
+	})();
+	</script>
+</dom-module>

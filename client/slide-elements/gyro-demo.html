@@ -1,0 +1,75 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="gyro-demo">
+	<template>
+		<style>
+			:host {
+			}
+			h1 {
+				@apply(--paper-font-title);
+			}
+			div#icon {
+				width: 100%;
+				max-width: 480px;
+				margin: 60px auto;
+				-moz-transform-style: preserve-3d;
+				-webkit-transform-style: preserve-3d;
+				-o-transform-style: preserve-3d;
+				-ms-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			img {
+				width: 100%;
+				height: auto;
+			}
+		</style>
+		<h1>ジャイロセンサー</h1>
+		<p>X軸:[[beta]] Y軸:[[gamma]] Z軸:[[alpha]]</p>
+		<div id="icon">
+			<img src="/icon.png">
+		</div>
+	</template>
+	<script>
+	(function() {
+		'use strict';
+
+		Polymer({
+			is: 'gyro-demo',
+
+			properties: {
+				count: {
+					type: Number,
+					value: 0
+				},
+				beta: {
+					type: Number,
+					value: 0
+				},
+				gamma: {
+					type: Number,
+					value: 0
+				},
+				alpha: {
+					type: Number,
+					value: 0
+				}
+			},
+
+			attached: function() {
+				window.addEventListener('deviceorientation', this.onGyroChanged.bind(this));
+			},
+			detached: function() {
+				window.removeEventListener('deviceorientation', this.onGyroChanged.bind(this));
+			},
+			onGyroChanged: function(e) {
+				this.beta = parseInt(e.beta);   //X
+				this.gamma = parseInt(e.gamma); //Y
+				this.alpha = parseInt(e.alpha); //Z
+				this.transform('rotateX(' + this.beta  + 'deg)', this.$.icon);
+				this.transform('rotateY(' + this.gamma + 'deg)', this.$.icon);
+				this.transform('rotateZ(' + this.alpha + 'deg)', this.$.icon);
+			}
+		});
+	})();
+	</script>
+</dom-module>

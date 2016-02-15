@@ -1,0 +1,70 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="shake-demo">
+	<template>
+		<style>
+			:host {
+			}
+			div#icon {
+				width: 100%;
+				max-width: 360px;
+				margin: 0 auto;
+			}
+			img {
+				width: 100%;
+				height: auto;
+			}
+		</style>
+		<h1>加速度センサー</h1>
+		<button id="btn" on-tap="toggle">Start</button>
+		<span>カウント:[[count]] 最大化速度:[[maxAccel]]</span>
+		<span>started:[[started]]</span>
+		<div id="icon">
+			<img src="/bell2.png">
+		</div>
+	</template>
+	<script>
+	(function() {
+		'use strict';
+
+		Polymer({
+			is: 'shake-demo',
+
+			properties: {
+				count: {
+					type: Number,
+					value: 0
+				},
+				maxAccel: {
+					type: Number,
+					value: 0
+				},
+				started: {
+					type: Boolean,
+					value: false
+				}
+			},
+			toggle: function() {
+				this.started = !this.started;
+				if (this.started) {
+					window.addEventListener('devicemotion', this.onMotionChanged.bind(this));
+				} else {
+					window.removeEventListener('devicemotion', this.onMotionChanged.bind(this));
+				}
+			},
+			attached: function() {
+			},
+			detached: function() {
+			},
+			onMotionChanged: function(e) {
+				this.count++;
+				var ac = e.accelerration;
+				var x = ac.x;
+				var y = ac.y;
+				var z = ac.z;
+				this.maxAccel = Math.max(this.maxAccel, x, y, z);
+			}
+		});
+	})();
+	</script>
+</dom-module>
